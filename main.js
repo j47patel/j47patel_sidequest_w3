@@ -23,6 +23,10 @@
 // Only one screen should be active at a time.
 let currentScreen = "start"; // "start" | "instr" | "game" | "win" | "lose"
 
+let chosenPet = null;
+let chosenEyes = null;
+let chosenFur = null;
+
 // ------------------------------
 // setup() runs ONCE at the beginning
 // ------------------------------
@@ -51,8 +55,9 @@ function draw() {
   if (currentScreen === "start") drawStart();
   else if (currentScreen === "instr") drawInstr();
   else if (currentScreen === "game") drawGame();
-  else if (currentScreen === "win") drawWin();
-  else if (currentScreen === "lose") drawLose();
+  else if (currentScreen === "eyes") drawEyes();
+  else if (currentScreen === "fur") drawFur();
+  else if (currentScreen === "final") drawFinal();
 
   // (Optional teaching note)
   // This “if/else chain” is a very common early approach.
@@ -76,10 +81,9 @@ function mousePressed() {
   if (currentScreen === "start") startMousePressed();
   else if (currentScreen === "instr") instrMousePressed();
   else if (currentScreen === "game") gameMousePressed();
-  // The ?.() means “call this function only if it exists”
-  // This prevents errors if a screen doesn’t implement a handler.
-  else if (currentScreen === "win") winMousePressed?.();
-  else if (currentScreen === "lose") loseMousePressed?.();
+  else if (currentScreen === "eyes") eyesMousePressed();
+  else if (currentScreen === "fur") furMousePressed();
+  else if (currentScreen === "final") finalMousePressed();
 }
 
 // ------------------------------
@@ -97,8 +101,9 @@ function keyPressed() {
   if (currentScreen === "start") startKeyPressed();
   else if (currentScreen === "instr") instrKeyPressed();
   else if (currentScreen === "game") gameKeyPressed?.();
-  else if (currentScreen === "win") winKeyPressed?.();
-  else if (currentScreen === "lose") loseKeyPressed?.();
+  else if (currentScreen === "eyes") eyesMousePressed?.();
+  else if (currentScreen === "fur") furMousePressed?.();
+  else if (currentScreen === "final") finalMousePressed?.();
 }
 
 // ------------------------------------------------------------
